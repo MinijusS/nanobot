@@ -60,6 +60,29 @@ nanobot agent -m "Hello!"
 
 Environment variables set this way apply only to the current terminal. For long-running services such as systemd, Docker, LaunchAgent, or a remote shell, set the variables in that service environment before starting nanobot.
 
+## Recipe: Hostinger AI Router
+
+Hostinger AI Router provides OpenAI-compatible access to multiple model vendors through one Hostinger key and shared credit balance.
+
+```json
+{
+  "providers": {
+    "hostinger": {
+      "apiKey": "${HOSTINGER_AI_ROUTER_API_KEY}"
+    }
+  },
+  "modelPresets": {
+    "primary": {
+      "provider": "hostinger",
+      "model": "[MODEL_ID]"
+    }
+  },
+  "agents": { "defaults": { "modelPreset": "primary" } }
+}
+```
+
+The built-in endpoint is `https://router.hostinger.com/v1`; replace `[MODEL_ID]` with the exact ID from Hostinger dashboard → AI Router → Models. Hostinger documents that one credit costs $0.01. See the [official Hostinger AI Router guide](https://www.hostinger.com/support/what-is-hostinger-ai-router-and-how-to-get-started/).
+
 ## Recipe: OpenRouter Gateway
 
 Select OpenRouter in **Settings → Models → New preset**, add its API key through **Provider → Add provider** if needed, and choose a model available to your account. Save and select the preset in chat.

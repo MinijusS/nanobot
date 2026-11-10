@@ -270,6 +270,18 @@ PROVIDERS: tuple[ProviderSpec, ...] = (
         gateway_reasoning_style="reasoning_effort",
     ),
     ProviderSpec(
+        name="hostinger",
+        keywords=("hostinger", "hostinger-router", "hostinger_router"),
+        env_key="HOSTINGER_AI_ROUTER_API_KEY",
+        request_apis=("chat_completions", "responses"),
+        display_name="Hostinger AI Router",
+        backend="openai_compat",
+        is_gateway=True,
+        detect_by_key_prefix="sk-hstgr-",
+        detect_by_base_keyword="router.hostinger.com",
+        default_api_base="https://router.hostinger.com/v1",
+    ),
+    ProviderSpec(
         name="orcarouter",
         keywords=("orcarouter",),
         env_key="ORCAROUTER_API_KEY",
