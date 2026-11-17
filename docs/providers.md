@@ -90,6 +90,40 @@ Preparation preserves each adapter's model and API capability rules. When automa
 
 ## Common Provider Patterns
 
+### Hostinger AI Router
+
+Hostinger AI Router is an OpenAI-compatible gateway that provides models from multiple vendors through one Hostinger API key and shared AI credit balance. Create a key in the Hostinger dashboard, then configure:
+
+<details>
+<summary>Manual configuration</summary>
+
+```json
+{
+  "providers": {
+    "hostinger": {
+      "apiKey": "${HOSTINGER_AI_ROUTER_API_KEY}"
+    }
+  },
+  "modelPresets": {
+    "primary": {
+      "provider": "hostinger",
+      "model": "[MODEL_ID]",
+      "maxTokens": 8192,
+      "contextWindowTokens": 65536
+    }
+  },
+  "agents": {
+    "defaults": {
+      "modelPreset": "primary"
+    }
+  }
+}
+```
+
+</details>
+
+The built-in base URL is `https://router.hostinger.com/v1`. Use the exact model ID shown in **Hostinger dashboard → AI Router → Models**. Hostinger AI Router charges usage from your shared AI credit balance; one credit is priced at $0.01. See the [official setup guide](https://www.hostinger.com/support/what-is-hostinger-ai-router-and-how-to-get-started/) for account, key, model, and billing details.
+
 ### OpenRouter Gateway
 
 Gateway-style setup for model IDs served through OpenRouter.

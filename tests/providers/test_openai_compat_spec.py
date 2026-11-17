@@ -450,6 +450,18 @@ def test_openrouter_spec_is_gateway() -> None:
     assert spec.default_api_base == "https://openrouter.ai/api/v1"
 
 
+def test_hostinger_spec_uses_openai_compatible_gateway() -> None:
+    spec = find_by_name("hostinger")
+    assert spec is not None
+    assert spec.is_gateway is True
+    assert spec.backend == "openai_compat"
+    assert spec.env_key == "HOSTINGER_AI_ROUTER_API_KEY"
+    assert spec.display_name == "Hostinger AI Router"
+    assert spec.detect_by_key_prefix == "sk-hstgr-"
+    assert spec.detect_by_base_keyword == "router.hostinger.com"
+    assert spec.default_api_base == "https://router.hostinger.com/v1"
+
+
 def test_novita_spec_uses_openai_compatible_gateway() -> None:
     spec = find_by_name("novita")
     assert spec is not None
